@@ -14,7 +14,6 @@ class miControlador extends Controller
         $record = $req->get('record');
 
         try{
-
             $act = DB::table('usuarios')
             ->where('usuario', $usuario)
             ->update(['record'=> $record]);
