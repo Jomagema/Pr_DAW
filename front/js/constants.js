@@ -4,3 +4,4 @@ const rutaCartas = "../img/juego/";
 const rutaEnemigos = "../img/enemigos/";
 const rutaPersonajes = "../img/juego/";
 const rutaRecompensas = "../img/juego/";
+
