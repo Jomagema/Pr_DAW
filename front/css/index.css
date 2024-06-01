@@ -1,0 +1,332 @@
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  background-color: #000000;
+  font-family: 'Cormorant Garamond', serif;
+}
+
+#banner {
+  position: relative;
+  width: 100%;
+  height: 600px;
+  overflow: hidden;
+}
+
+#banner .overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 1;
+}
+
+#banner img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 2;
+}
+
+.titulo {
+  width: 100%; /* Ajusta el ancho de la imagen */
+  height: auto; /* Permite que la altura se ajuste automáticamente */
+  display: block; /* Asegura que la imagen se muestre como un bloque */
+  object-fit: unset !important; /* Sobrescribe la propiedad object-fit */
+  /* Otros estilos que desees aplicar */
+}
+
+
+.texto-banner {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  color: #fff;
+  z-index: 3;
+}
+
+.texto-banner h1 {
+  font-size: 36px;
+}
+
+.botones {
+  position: absolute;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  text-align: center;
+  z-index: 3;
+}
+
+button {
+  margin: 0 10px;
+  padding: 10px 20px;
+  font-size: 16px;
+  color: #fff;
+  background-color: #e74c3c;
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
+  transition: background-color 0.3s ease, color 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+}
+
+button:hover {
+  background-color: #000;
+  color: #fff;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+.destacado {
+  font-size: 20px;
+  background-color: #d9534f;
+  border: 2px solid #a94442;
+}
+
+.destacado:hover {
+  border-color: #000;
+}
+
+/* Nuevos botones */
+.nuevos-botones {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  display: flex;
+  gap: 10px;
+  z-index: 3;
+}
+
+.nuevos-botones button {
+  padding: 10px 20px;
+  font-size: 16px;
+  color: #fff;
+  background-color: #e74c3c;
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
+  transition: background-color 0.3s ease, color 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+}
+
+.nuevos-botones button:hover {
+  background-color: #000;
+  color: #fff;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+#boton img{
+  height: 50px;
+  width: 50px;
+  border-radius: 10px;
+}
+
+#boton p{
+  background: rgb(77, 76, 76, 0.3);
+  color: white;
+}
+
+/*Banners pequeños informacion*/
+
+.specs {
+    margin: 1em 0;
+    padding: 8vh 0;
+    border-top: 0.5em solid #888888; /* Reemplaza var(--gris) con el valor de color gris deseado */
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: center;
+    align-items: center;
+    color: #ffffff; /* Reemplaza var(--blanco) con el valor de color blanco deseado */
+  }
+  
+  .specs.inverso .specs__center {
+    flex-direction: row-reverse;
+  }
+  
+  @media screen and (max-width: 700px) {
+    .specs.inverso .specs__center {
+        flex-direction: column;
+    }
+  }
+  
+  .specs:nth-child(4) {
+    border-bottom: 0.5em solid #888888; /* Reemplaza var(--gris) con el valor de color gris deseado */
+  }
+  
+  .specs--first {
+    margin: 0;
+  }
+  
+  .specs__center {
+    width: 92%;
+    max-width: 730em;
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  @media screen and (max-width: 700px) {
+    .specs__center {
+        flex-direction: column;
+    }
+  }
+  
+  .specs__col {
+    width: calc(100% / 2 - 1em);
+    position: relative;
+  }
+  
+  @media screen and (max-width: 700px) {
+    .specs__col {
+        width: 90%;
+        text-align: center;
+    }
+  }
+  
+  .specs__h4 {
+    margin: 0 0 0.5em;
+    font-size: 3.2em;
+    font-weight: 600;
+    line-height: 1em;
+  }
+  
+  @media screen and (max-width: 700px) {
+    .specs__h4 {
+        font-size: 1.6em;
+    }
+  }
+  
+  .specs__p {
+    font-size: 1.6em;
+  }
+  
+  @media screen and (max-width: 700px) {
+    .specs__p {
+        font-size: 1.3em;
+    }
+  }
+  
+  .specs__overlay {
+    position: relative;
+    z-index: 2;
+    transform: scale(0.6);
+    width: 700px;
+    height: 350px;
+  }
+  
+
+  .specs .contenido-centrado {
+    text-align: center;
+    z-index: 2; /* Asegura que el contenido esté en la capa superior */
+}
+
+h2 {
+    font-size: 2em;
+    margin-bottom: 0.5em;
+}
+
+p {
+    font-size: 1.5em;
+}
+
+.marco-imagenes {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 20px;
+}
+
+.marco-imagenes img {
+    width: 250px; /* Aumenta el tamaño del marco de la imagen */
+    height: 250px; /* Aumenta el tamaño del marco de la imagen */
+    object-fit: cover;
+    object-position: center center; /* Centra la imagen dentro del marco */
+    border: 2px solid #ffffff;
+    border-radius: 8px;
+    margin: 0 10px;
+    transition: transform 0.3s ease, border-color 0.3s ease;
+}
+
+.marco-imagenes img:hover {
+    transform: translateY(-10px); /* Eleva la imagen al pasar el cursor */
+    border-color: #e74c3c; /* Cambia el color del borde al pasar el cursor */
+}
+
+/* Estilos para la ventana modal */
+.modal {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.7);
+  justify-content: center;
+  align-items: center;
+  z-index: 100;
+}
+
+.modal-content {
+  background-color: #fff;
+  color: #000;
+  padding: 20px;
+  border-radius: 8px;
+  max-width: 800px;
+  width: 100%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 101;
+  display: flex; /* Usamos flexbox para colocar el contenido en una fila */
+}
+
+#modal-image {
+  max-width: 40%;
+  height: auto;
+  border-radius: 8px;
+  margin-right: 20px;
+}
+
+#modal-text {
+  max-width: 60%;
+}
+
+.close {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  font-size: 50px; /* Ajusta el tamaño de la "x" según tus preferencias */
+  cursor: pointer;
+}
+
+.close:hover {
+  color: #e74c3c;
+}
+
+#modal-title {
+  font-size: 24px;
+  margin-bottom: 10px;
+}
+
+#modal-description {
+  font-size: 16px;
+}
+
+.titulo {
+  opacity: 0; /* Inicialmente establece la opacidad en 0 */
+  transform: translateY(-50px); /* Desplaza la imagen hacia arriba 50px (o el valor que prefieras) */
+  transition: opacity 5s ease, transform 5s ease; /* Aplica transiciones de opacidad y transformación */
+}
+
+body.show-image img {
+  opacity: 1; /* Cuando la clase 'show-image' está presente, establece la opacidad en 1 */
+  transform: translateY(0); /* Vuelve a la posición original */
+}
+
+.titulo-container{
+  height: 40%;
+  width: 40%;
+}
