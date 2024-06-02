@@ -1,5 +1,5 @@
-import "http/http_juego.js";
-import "constants.js";
+import "./http/http_juego.js";
+import "./constants.js";
 
 var personaje = {};
 var enemigo = {};

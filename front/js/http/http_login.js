@@ -1,5 +1,5 @@
 import "../constants.js";
-import "user.js";
+import "../user.js";
 
 document.getElementById('loginForm').addEventListener('submit', function(event) {
     event.preventDefault(); // Evita que se envíe el formulario por defecto

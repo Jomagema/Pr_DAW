@@ -1,5 +1,5 @@
 import "./http/http_index.js";
-import "user.js";
+import "./user.js";
 
 // JavaScript para agregar la clase 'show-image' después de que la página ha cargado
 document.addEventListener('DOMContentLoaded', function () {

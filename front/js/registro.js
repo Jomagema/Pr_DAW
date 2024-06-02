@@ -1,4 +1,4 @@
-import "http/http_registro.js";
+import "./http/http_registro.js";
 
 var imagenes = []; // Rutas de las imágenes
 imagenes = cargar_imagenes(imagenes);

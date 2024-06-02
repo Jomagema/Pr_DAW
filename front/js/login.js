@@ -1,4 +1,4 @@
-import "user.js";
+import "./user.js";
 
 function crearStorage() {
     
