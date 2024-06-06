@@ -1,5 +1,4 @@
-import "./http/http_index.js";
-import "./user.js";
+var rutaAvatares = "./img/avatares/"; //Misma para usuarios
 
 // JavaScript para agregar la clase 'show-image' después de que la página ha cargado
 document.addEventListener('DOMContentLoaded', function () {
@@ -38,12 +37,17 @@ function closeDescriptionModal() {
     modal.style.display = 'none';
 }
 
-console.log(localStorage.usuario);
+var user = localStorage.usuario;
+var record = localStorage.record;
+var avatar = localStorage.imagen;
+
+console.log(user);
+console.log(record);
+console.log(avatar);
 
 if (localStorage.usuario != null) {
-    var user = localStorage.usuario;
-    document.getElementById("boton").innerHTML = "<p>Bienvenido "+user.nombre+" | Record: "+user.record+"</p>";
-    document.getElementById("boton").innerHTML +="<img src='"+rutaAvatares+data.avatar+"'><br>";
+    document.getElementById("boton").innerHTML = "<p>Bienvenido "+user+" | Record: "+record+"</p>";
+    document.getElementById("boton").innerHTML +="<img src='"+rutaAvatares+avatar+"'><br>";
     document.getElementById("boton").innerHTML +="<p onclick='cerrarSesion()'>Cerrar sesion</p>"
 }
 
@@ -55,4 +59,6 @@ function generarBotones() {
 
 function cerrarSesion(nombre) {
     localStorage.clear()
+    let botones = document.getElementById("boton")
+    botones.innerHTML = "<a href='html/login.html'><button>Iniciar Sesión</button></a><a href='html/registro.html'><button>Registrarse</button></a>"
 }

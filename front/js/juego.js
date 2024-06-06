@@ -1,7 +1,4 @@
-import "./http/http_juego.js";
-import "./constants.js";
 
-var personaje = {};
 var enemigo = {};
 var ronda = 0;
 var prob1 = 90;
@@ -10,18 +7,16 @@ var prob3 = 0;
 
 var user = localStorage.user;
 
-var enemigos = [[],[],[]]
-var recompensas = [];
+var rutaRecompensas = "../img/juego/";
+
+
 var bloqueo = [0, 0, 1, 1, 2, 5];
 
-//var tipos = ["Daño", "Curar", "Escudo"];
-
 window.onload = function() {
-    recompensas = rellenarRecompensas(recompensas);
-    rellenarEnemigos(enemigos);
-    personaje = datosPersonaje(personaje);
-    personaje = rellenarCartas(personaje);
-    actualizarDatos();
+    rellenarRecompensas();
+    rellenarEnemigos();
+    datosPersonaje();
+    rellenarCartas();
 }
 
 function finTurno() {
@@ -238,6 +233,8 @@ function comenzar() {
         document.getElementById("admin").innerHTML += "<button onclick='daño()'>Daño</button>";
 
     }
+
+    actualizarDatos();
 }
 
 function limpiarFeed() {
@@ -264,4 +261,147 @@ function daño() {
     personaje.vida -= 1;
     actualizarDatos();
     resultado();
+}
+
+
+// <----------- HTTP ----------->
+
+var url = "http://127.0.0.1:8000/api/";
+var rutaEnemigos = "../img/enemigos/";
+var rutaPersonajes = "../img/juego/";
+var rutaCartas = "../img/juego/";
+
+var enemigos = [[],[],[]]
+var recompensas = [];
+
+function rellenarEnemigos() {
+    fetch(url + 'enemigos')
+    .then(response => {
+        if (!response.ok) {
+            throw new Error('Error al obtener los datos');
+        }
+        return response.json();
+    })
+    .then(data => {
+        // Reinicializamos el array enemigos
+        enemigos = [[],[],[]];
+        
+        data.forEach(e => {
+            if (e.nivel == 1) {
+                enemigos[0].push(e);
+            } else if (e.nivel == 2) {
+                enemigos[1].push(e);
+            } else if (e.nivel == 3) {
+                enemigos[2].push(e);
+            }
+        });
+
+        enemigo = {};
+        // Ahora, elige un enemigo aleatorio del nivel 1
+        enemigo = enemigos[0][num(0, enemigos[0].length - 1)];
+        console.log(enemigo)
+
+        // Actualiza la imagen del enemigo
+        document.getElementById("enemigo").src = rutaEnemigos + enemigo.imagen;
+
+    })
+    .catch(error => {
+        console.error('Hubo un problema con la solicitud fetch:', error);
+    });
+}
+
+
+function rellenarRecompensas() {
+    fetch(url + 'recompensas')
+    .then(response => {
+        if (!response.ok) {
+            throw new Error('Error al obtener los datos');
+        }
+        return response.json();
+    })
+    .then(data => {
+
+        recompensas = data;
+
+    })
+    .catch(error => {
+        console.error('Hubo un problema con la solicitud fetch:', error);
+    });
+
+    return recompensas;
+}
+
+var personaje = {};
+
+function datosPersonaje() {
+    fetch(url + 'personajes')
+    .then(response => {
+        if (!response.ok) {
+            throw new Error('Error al obtener los datos');
+        }
+        return response.json();
+    })
+    .then(data => {
+
+        // Asignamos los datos directamente a personaje
+        personaje = data[0];
+        
+        // Luego puedes agregar las propiedades adicionales como lo hiciste antes
+        personaje.mano = 3;
+        personaje.escudo = 0;
+        personaje.vida = personaje.vida_maxima;
+
+        document.getElementById("jugador").src = rutaPersonajes + personaje.imagen;
+
+        // Aquí puedes trabajar con el objeto personaje después de que se hayan cargado los datos
+        console.log(personaje);
+        // También puedes llamar a otras funciones que dependan del objeto personaje aquí
+        // actualizarDatos();
+    })
+    .catch(error => {
+        console.error('Hubo un problema con la solicitud fetch:', error);
+    });
+}
+function rellenarCartas() {
+    fetch(url + 'cartas')
+    .then(response => {
+        if (!response.ok) {
+            throw new Error('Error al obtener los datos');
+        }
+        return response.json();
+    })
+    .then(data => {
+        personaje.mazo = [];
+        data.forEach(carta => {
+            for (let index = 0; index < carta.cantidad; index++) {
+                let c = {
+                    valor: carta.valor,
+                    tipo: carta.tipo,
+                    imagen: carta.imagen
+                }
+                personaje.mazo.push(c);
+            }
+        });
+    })
+    .catch(error => {
+        console.error('Hubo un problema con la solicitud fetch:', error);
+    });
+
+}
+
+function actualizarRecord() {
+    const data = new FormData();
+    data.append('usuario', user.nombre);
+    data.append('nuevoRecord', ronda);
+
+    const opciones = {
+        method: 'POST',
+        body: data
+    };
+
+    fetch(url + 'act_record', opciones)
+        .then(response => response.text())
+        .then(resultado => console.log(resultado))
+        .catch(error => console.error('Error:', error));
+
 }

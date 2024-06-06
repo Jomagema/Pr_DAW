@@ -31,7 +31,7 @@ class miControlador extends Controller
 
     public function login(Request $req){
 
-        $nombre = $req->get('nombre');
+        $nombre = $req->get('usuario');
         $pass = $req->get('contrasena');
 
         $data = DB::table('usuarios')
@@ -99,7 +99,7 @@ class miControlador extends Controller
         $usuario = $req->get("usuario");
         $email = $req->get("email");
         $contrasena = $req->get("contrasena");
-        $imagen = $req->get("imagen");
+        $imagen = $req->get("ruta_imagen");
 
             try{
 
