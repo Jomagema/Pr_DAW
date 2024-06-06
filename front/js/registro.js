@@ -35,7 +35,7 @@ function cambiarImagen(cambio) {
 
     // Cambiar la imagen
     document.getElementById("imagen").src = "../img/avatares/" + imagenes[indiceImagenActual];
-    document.getElementById("ruta_imagen").value = "../img/avatares/" + imagenes[indiceImagenActual];
+    document.getElementById("ruta_imagen").value = imagenes[indiceImagenActual];
 
 }
 
@@ -72,6 +72,7 @@ document.getElementById('formRegister').addEventListener('submit', function(even
   // Obtener datos del formulario
   var formData = new FormData(this);
   formData.append("imagen", imagenes[indiceImagenActual]);
+  console.log(formData.imagen)
 
   // Enviar petición al servidor PHP usando fetch
   fetch(url + 'registrar', {
